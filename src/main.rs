@@ -73,8 +73,10 @@ fn main() -> Result<(), pico_args::Error> {
             let port = 3333;
             let address = Ipv4Addr::LOCALHOST;
 
-            println!("A Counter supports two messges Increment and Read");
-            println!("You can monitor and interact using tcpdump and netcat. Examples:");
+            println!("A CounterActor supports two messges, Increment and Read.");
+            println!("You can monitor and interact using tcpdump and netcat.");
+            println!("Use `tcpdump -D` if you see error `lo0: No such device exists`.");
+            println!("Examples:");
             println!("$ sudo tcpdump -i lo0 -s 0 -nnX");
             println!("$ nc -u {address} {port}");
             println!("{}", serde_json::to_string(&CounterMsg::Increment).unwrap());
@@ -90,7 +92,7 @@ fn main() -> Result<(), pico_args::Error> {
         }
         _ => {
             println!("USAGE:");
-            println!("  ./counter spawn");
+            println!("  sr-counter spawn");
         }
     }
 

@@ -19,10 +19,13 @@ Next run with `spawn` command, and we see the `println!` and `log` messages when
 ```
 wink@3900x:~/prgs/rust/myrepos/sr-counter (main)
 $ cargo run spawn
-    Finished dev [unoptimized + debuginfo] target(s) in 0.05s
+   Compiling sr-counter v0.2.0 (/home/wink/prgs/rust/myrepos/sr-counter)
+    Finished dev [unoptimized + debuginfo] target(s) in 2.31s
      Running `target/debug/sr-counter spawn`
-A Counter supports two messges Increment and Read
-You can monitor and interact using tcpdump and netcat. Examples:
+A CounterActor supports two messges, Increment and Read.
+You can monitor and interact using tcpdump and netcat.
+Use `tcpdump -D` if you see error `lo0: No such device exists`.
+Examples:
 $ sudo tcpdump -i lo0 -s 0 -nnX
 $ nc -u 127.0.0.1 3333
 "Increment"
@@ -30,7 +33,7 @@ $ nc -u 127.0.0.1 3333
 
 on_start:+ self: CounterActor, id: 127.0.0.1:3333 _o: []
 on_start:- ret_value: CounterState { id: Id(139637976796421), counter_value: 0 }
-[2022-03-28T22:53:39Z INFO  stateright::actor::spawn] Actor started. id=127.0.0.1:3333, state=CounterState { id: Id(139637976796421), counter_value: 0 }, out=[]
+[2022-03-29T16:36:39Z INFO  stateright::actor::spawn] Actor started. id=127.0.0.1:3333, state=CounterState { id: Id(139637976796421), counter_value: 0 }, out=[]
 ```
 
 Start `nc`, and you see a blank line:
